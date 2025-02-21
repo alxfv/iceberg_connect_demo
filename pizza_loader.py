@@ -18,13 +18,14 @@ def gen_orders():
         print(f"Produced {i} pizzas to pizzas topic.")
 
 class Pizza:
-    def __init__(self, order_id, store_id, sauce, cheese, meats, veggies):
+    def __init__(self, order_id, store_id, sauce, cheese, meats, veggies, price):
         self.order_id = order_id
         self.store_id = store_id
         self.sauce = sauce
         self.cheese = cheese
         self.meats = meats
         self.veggies = veggies
+        self.price = price
         self.date_ordered = datetime.now().strftime('%Y-%m-%d %H:%M:%S')
         
     def toJSON(self):
@@ -66,12 +67,16 @@ def calc_veggies():
             selection.append(veggies[random.randint(0, 5)])
     return ' & '.join(set(selection))
 
+def calc_price():
+    return random.randint(100, 200)
+
 def gen_pizza():
     sauce = calc_sauce()
     cheese = calc_cheese()
     meats = calc_meats()
     veggies = calc_veggies()
-    return Pizza('', 0, sauce, cheese, meats, veggies)
+    price = calc_price()
+    return Pizza('', 0, sauce, cheese, meats, veggies, price)
     
 def random_pizzas(quantity):
     pizzas = []
