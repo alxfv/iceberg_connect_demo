@@ -11,9 +11,18 @@ This demonstration will send data into an Apache Kafka topic which will be picke
 - Python
 
 ## Steps to run demo
-1. Launch server applications
+1. Launch dependencies and kafka connect
 
-    `docker compose up -d`
+Dependencies:
+
+    `docker compose up spark-iceberg mc broker minio rest spark-iceberg`
+
+Kafka connect: 
+   
+   `docker compose up --build connect`
+
+May require to disable VPN: "connect" container will try to donwload iceberg-kafka-connect extension. 
+
 2. Create Kafka topic
 
     `docker exec -t broker kafka-topics --create --topic completed-pizzas --partitions 6 --bootstrap-server broker:9092`
