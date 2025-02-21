@@ -46,3 +46,22 @@ This demonstration will send data into an Apache Kafka topic which will be picke
 9. Clean up resources when you're done.
 
     `docker compose down`
+
+
+## Jupiter Notebook
+
+Instead of pyspark you can use Jupiter Notebook http://localhost:8888/
+
+
+## Troubleshooting 
+
+`pip install confluent-kafka` fails with ``"fatal error: 'librdkafka/rdkafka.h' file not found"` 
+
+Solution:
+
+```
+brew install librdkafka
+export C_INCLUDE_PATH=/opt/homebrew/include
+export LIBRARY_PATH=/opt/homebrew/lib
+pip install confluent-kafka
+```
